@@ -1,4 +1,4 @@
-package systems.software.red.springrest;
+package systems.software.red.springrest.entity;
 
 import lombok.Getter;
 import lombok.Setter;
@@ -11,7 +11,7 @@ import java.util.Objects;
 @Entity
 @Getter
 @Setter
-class Employee {
+public class Employee {
 
     private @Id @GeneratedValue Long id;
     private String name;
@@ -19,7 +19,7 @@ class Employee {
 
     public Employee(){}
 
-    Employee(String name, String role){
+    public Employee(String name, String role){
         this.name = name;
         this.role = role;
     }

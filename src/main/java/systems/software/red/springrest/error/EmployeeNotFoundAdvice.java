@@ -1,4 +1,4 @@
-package systems.software.red.springrest;
+package systems.software.red.springrest.error;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.ControllerAdvice;

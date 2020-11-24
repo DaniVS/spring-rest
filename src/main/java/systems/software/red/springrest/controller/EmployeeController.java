@@ -1,6 +1,9 @@
-package systems.software.red.springrest;
+package systems.software.red.springrest.controller;
 
 import org.springframework.web.bind.annotation.*;
+import systems.software.red.springrest.error.EmployeeNotFoundException;
+import systems.software.red.springrest.repository.EmployeeRepository;
+import systems.software.red.springrest.entity.Employee;
 
 import java.util.List;
 

@@ -1,4 +1,4 @@
-package systems.software.red.springrest;
+package systems.software.red.springrest.error;
 
 public class EmployeeNotFoundException extends RuntimeException {
     public EmployeeNotFoundException(long id) {
