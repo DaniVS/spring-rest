@@ -5,7 +5,7 @@ import org.springframework.hateoas.EntityModel;
 import org.springframework.hateoas.IanaLinkRelations;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import systems.software.red.springrest.EmployeeModelAssembler;
+import systems.software.red.springrest.assembler.EmployeeModelAssembler;
 import systems.software.red.springrest.error.EmployeeNotFoundException;
 import systems.software.red.springrest.repository.EmployeeRepository;
 import systems.software.red.springrest.entity.Employee;

@@ -1,4 +1,4 @@
-package systems.software.red.springrest;
+package systems.software.red.springrest.assembler;
 
 import org.springframework.hateoas.EntityModel;
 import org.springframework.hateoas.server.RepresentationModelAssembler;
