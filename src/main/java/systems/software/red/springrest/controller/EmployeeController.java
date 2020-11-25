@@ -2,6 +2,8 @@ package systems.software.red.springrest.controller;
 
 import org.springframework.hateoas.CollectionModel;
 import org.springframework.hateoas.EntityModel;
+import org.springframework.hateoas.IanaLinkRelations;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import systems.software.red.springrest.EmployeeModelAssembler;
 import systems.software.red.springrest.error.EmployeeNotFoundException;
@@ -46,13 +48,18 @@ public class EmployeeController {
     }
 
     @PostMapping("/employees")
-    Employee newEmployee(@RequestBody Employee newEmployee){
-        return repository.save(newEmployee);
+    ResponseEntity<?> newEmployee(@RequestBody Employee newEmployee){
+
+        EntityModel<Employee> entityModel = assembler.toModel(repository.save(newEmployee));
+
+        return ResponseEntity
+            .created(entityModel.getRequiredLink(IanaLinkRelations.SELF).toUri())
+            .body(entityModel);
     }
 
     @PutMapping("/employees/{id}")
-    Employee replaceEmployee(@RequestBody Employee newEmployee, @PathVariable long id){
-        return repository.findById(id)
+    ResponseEntity<?> replaceEmployee(@RequestBody Employee newEmployee, @PathVariable long id){
+        Employee replacedEmployee = repository.findById(id)
             .map(employee -> {
                 employee.setName(newEmployee.getName());
                 employee.setRole(newEmployee.getRole());
@@ -61,10 +68,18 @@ public class EmployeeController {
                 newEmployee.setId(id);
                 return repository.save(newEmployee);
             });
+
+        EntityModel<Employee> entityModel = assembler.toModel(replacedEmployee);
+
+        return ResponseEntity
+            .created(entityModel.getRequiredLink(IanaLinkRelations.SELF).toUri())
+            .body(replacedEmployee);
     }
 
     @DeleteMapping("/employees/{id}")
-    void deleteEmployee(@PathVariable long id){
+    ResponseEntity<?> deleteEmployee(@PathVariable long id){
         repository.deleteById(id);
+
+        return ResponseEntity.noContent().build();
     }
 }
